@@ -8,6 +8,7 @@ public class MerchandiseColorSizeBean implements Serializable {
 	private int merchId;// 商品id
 	private String color;// 颜色
 	private String size;// 大小
+	private int stock;// 库存，还剩多少件
 
 	public int getId() {
 		return id;
@@ -39,6 +40,14 @@ public class MerchandiseColorSizeBean implements Serializable {
 
 	public void setSize(String size) {
 		this.size = size;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
 }
