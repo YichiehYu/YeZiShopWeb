@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.wujiuye.yezishop.bean">
+
+	<!-- 首页推荐表 -->
+	<class name="RecommendClassDataBean" table="com_wujiuye_yezishop_recommend">
+
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+		<!-- 单向多对一 -->
+		<many-to-one name="recommendClass" class="RecommendClassBean">
+			<column name="rc_id" />
+		</many-to-one>
+
+		<property name="imageUrl" type="java.lang.String">
+			<column name="image" />
+		</property>
+
+		<!-- 单向多对一 -->
+		<many-to-one name="merchandiseList" class="RecommendMerchandiseBean">
+			<column name="rm_id" />
+		</many-to-one>
+
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- 接口 -->
+	<package name="API" namespace="/api" extends="json-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult"></result-type>
+		</result-types>
+
+		<!-- 获取分类 -->
+		<action name="merchClass" class="com.wujiuye.yezishop.api.MerchClassAction"
+			method="getMerchClass">
+			<result type="json" name="actionjson">
+				<!-- 返回的字段名 -->
+				<param name="root">result</param>
+			</result>
+		</action>
+
+	</package>
+
+	<!-- web网页 -->
+	<package name="WEB" namespace="/web" extends="struts-default">
+
+	</package>
+
+</struts>

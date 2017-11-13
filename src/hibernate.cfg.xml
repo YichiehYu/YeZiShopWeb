@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- hibernate - jdbc连接基本配置 -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql:///com_wujiuye_yezishop?useUnicode=true&amp;characterEncoding=UTF-8</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password"></property>
+
+		<!-- hibernate - jdbc连接基本配置 服务器的数据库配置  记得加上对应的数据库密码-->
+		<!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property> 
+			<property name="hibernate.connection.url">jdbc:mysql:///com_wujiuye_yezishop?useUnicode=true&amp;characterEncoding=UTF-8</property> 
+			<property name="hibernate.connection.username">root</property> <property 
+			name="hibernate.connection.password"></property> -->
+
+
+		<!-- hibernate基本配置 -->
+		<!-- 方言 -->
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		<!-- 是否输出sql语句 -->
+		<property name="show_sql">true</property>
+		<!-- 是否格式化sql语句 -->
+		<property name="format_sql">true</property>
+		<!-- 指定自动生成数据表的策略:在运行数据库的时候hibernate会为我们在数据库自动生成数据表的策略 -->
+		<!-- <property name="hbm2ddl.auto">validate</property> -->
+		<property name="hbm2ddl.auto">update</property>
+
+		<!-- 注册关系映射表 -->
+		<mapping resource="com/wujiuye/yezishop/bean/ClassBean.hbm.xml" />
+		<mapping resource="com/wujiuye/yezishop/bean/HomeHeadNewsBean.hbm.xml" />
+		<mapping resource="com/wujiuye/yezishop/bean/MerchandiseBean.hbm.xml" />
+		<mapping resource="com/wujiuye/yezishop/bean/RecommendClassDataBean.hbm.xml" />
+		<mapping resource="com/wujiuye/yezishop/bean/RecommendMerchandiseBean.hbm.xml" />
+		<mapping resource="com/wujiuye/yezishop/bean/RecommendClassBean.hbm.xml" />
+		<mapping resource="com/wujiuye/yezishop/bean/MerchandiseColorSizeBean.hbm.xml"/>
+		<mapping resource="com/wujiuye/yezishop/bean/MerchandiseParameterBean.hbm.xml"/>
+		<mapping resource="com/wujiuye/yezishop/bean/MerchandiseImagesBean.hbm.xml"/>
+ 
+	</session-factory>
+</hibernate-configuration>

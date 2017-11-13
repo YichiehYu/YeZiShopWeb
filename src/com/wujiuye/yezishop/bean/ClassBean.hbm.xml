@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.wujiuye.yezishop.bean">
+
+	<class name="ClassBean" table="com_wujiuye_yezishop_merchclass">
+
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+		<property name="name" type="java.lang.String">
+			<column name="name" />
+		</property>
+
+		<many-to-one name="parentsClass" class="ClassBean">
+			<column name="p_id" />
+		</many-to-one>
+
+		<property name="imgUrl" type="java.lang.String">
+			<column name="image"></column>
+		</property>
+
+	</class>
+</hibernate-mapping>

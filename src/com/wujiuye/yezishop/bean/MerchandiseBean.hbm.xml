@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.wujiuye.yezishop.bean">
+
+	<class name="MerchandiseBean" table="com_wujiuye_yezishop_merchandise">
+	
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+		<property name="merchName" type="java.lang.String">
+			<column name="merch_name" />
+		</property>
+		
+		<property name="price" type="float">
+			<column name="price" />
+		</property>
+		
+		<property name="htmlBody" type="java.lang.String">
+			<column name="htmlbody" />
+		</property>
+		
+		<property name="sales" type="int">
+			<column name="sales" />
+		</property>
+		
+		<many-to-one name="clas" class="ClassBean"
+			fetch="join">
+			<column name="mc_id" />
+		</many-to-one>
+
+         <set name="parameter" cascade="save-update,delete">
+             <key column="merch_id"></key>
+             <one-to-many class="MerchandiseParameterBean"/>
+         </set>
+		
+		<set name="images" cascade="save-update,delete">
+             <key column="merch_id"></key>
+             <one-to-many class="MerchandiseImagesBean"/>
+         </set>
+         
+         <set name="colorSize" cascade="save-update,delete">
+         	<key column="merch_id"></key>
+         	<one-to-many class="MerchandiseColorSizeBean"/>
+         </set>
+	</class>
+</hibernate-mapping>

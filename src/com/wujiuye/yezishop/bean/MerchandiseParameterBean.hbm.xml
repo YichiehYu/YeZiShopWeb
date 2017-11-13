@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+	<class name="com.wujiuye.yezishop.bean.MerchandiseParameterBean"
+		table="com_wujiuye_yezishop_merchandise_paramenter">
+
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+		<property name="merchId" type="int">
+			<column name="merch_id" />
+		</property>
+
+		<property name="key" type="java.lang.String">
+			<column name="paramenter_key" />
+		</property>
+
+		<property name="value" type="java.lang.String">
+			<column name="paramenter_value" />
+		</property>
+
+	</class>
+</hibernate-mapping>

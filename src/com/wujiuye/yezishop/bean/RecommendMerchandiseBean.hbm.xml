@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.wujiuye.yezishop.bean">
+
+    <class name="RecommendMerchandiseBean" table="com_wujiuye_yezishop_recommend_merchand">
+    
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        
+        <many-to-one name="merchandiseBean" class="MerchandiseBean">
+            <column name="m_id" />
+        </many-to-one>
+        
+        <property name="showType" type="int">
+            <column name="showType" />
+        </property>
+        
+    </class>
+</hibernate-mapping>
