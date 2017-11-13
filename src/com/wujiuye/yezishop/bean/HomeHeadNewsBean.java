@@ -38,4 +38,9 @@ public class HomeHeadNewsBean implements Serializable {
 		this.imageUrl = imageUrl;
 	}
 
+	@Override
+	public String toString() {
+		return "HomeHeadNewsBean [id=" + id + ", clickToUrl=" + clickToUrl + ", imageUrl=" + imageUrl + "]";
+	}
+
 }

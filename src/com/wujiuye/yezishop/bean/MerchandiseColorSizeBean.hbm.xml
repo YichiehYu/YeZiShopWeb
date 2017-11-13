@@ -3,18 +3,19 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 
-<hibernate-mapping>
+<hibernate-mapping package="com.wujiuye.yezishop.bean">
 
-    <class name="com.wujiuye.yezishop.bean.MerchandiseColorSizeBean" table="com_wujiuye_yezishop_mercchandise_colorsize">
+    <class name="MerchandiseColorSizeBean" table="com_wujiuye_yezishop_mercchandise_colorsize">
     
         <id name="id" type="int">
             <column name="id" />
             <generator class="native" />
         </id>
         
-        <property name="merchId" type="int">
-            <column name="merch_id" />
-        </property>
+        <!-- 默认使用懒加载，该字段一般用不到 -->
+		<many-to-one name="merch" class="MerchandiseBean">
+			<column name="merch_id" />
+		</many-to-one>
         
         <property name="color" type="java.lang.String">
             <column name="color" />

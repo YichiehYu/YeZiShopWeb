@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class MerchandiseImagesBean implements Serializable {
 
 	private int id;
-	private int merchId;// 商品id
+	private MerchandiseBean merch;// 商品id
 	private String bigPath;// 大图url
 	private String newPath;// 图片url
 
@@ -23,12 +23,12 @@ public class MerchandiseImagesBean implements Serializable {
 		this.id = id;
 	}
 
-	public int getMerchId() {
-		return merchId;
+	public MerchandiseBean getMerch() {
+		return merch;
 	}
 
-	public void setMerchId(int merchId) {
-		this.merchId = merchId;
+	public void setMerch(MerchandiseBean merch) {
+		this.merch = merch;
 	}
 
 	public String getBigPath() {
@@ -45,6 +45,12 @@ public class MerchandiseImagesBean implements Serializable {
 
 	public void setNewPath(String newPath) {
 		this.newPath = newPath;
+	}
+
+	@Override
+	public String toString() {
+		return "MerchandiseImagesBean [id=" + id + ", merchId=" + (merch==null?0:merch.getId()) + ", bigPath=" + bigPath + ", newPath="
+				+ newPath + "]";
 	}
 
 }

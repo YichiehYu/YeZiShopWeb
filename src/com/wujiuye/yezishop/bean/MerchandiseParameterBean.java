@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class MerchandiseParameterBean implements Serializable {
 
 	private int id;
-	private int merchId;// 商品id
+	private MerchandiseBean merch;// 对应商品
 	private String key;
 	private String value;
 
@@ -23,12 +23,12 @@ public class MerchandiseParameterBean implements Serializable {
 		this.id = id;
 	}
 
-	public int getMerchId() {
-		return merchId;
+	public MerchandiseBean getMerch() {
+		return merch;
 	}
 
-	public void setMerchId(int merchId) {
-		this.merchId = merchId;
+	public void setMerch(MerchandiseBean merch) {
+		this.merch = merch;
 	}
 
 	public String getKey() {
@@ -45,6 +45,12 @@ public class MerchandiseParameterBean implements Serializable {
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+
+	@Override
+	public String toString() {
+		return "MerchandiseParameterBean [id=" + id + ", merchId=" + (merch==null?0:merch.getId()) + ", key=" + key + ", value=" + value
+				+ "]";
 	}
 
 }

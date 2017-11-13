@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class RecommendMerchandiseBean implements Serializable {
 
 	private int id;
-	private MerchandiseBean merchandiseBean;//商品
+	private MerchandiseBean merchandiseBean;// 商品
 	private int showType;// 推荐商品的显示样式
 
 	public int getId() {
@@ -36,6 +36,12 @@ public class RecommendMerchandiseBean implements Serializable {
 
 	public void setShowType(int showType) {
 		this.showType = showType;
+	}
+
+	@Override
+	public String toString() {
+		return "RecommendMerchandiseBean [id=" + id + ", merchandiseBean=" + merchandiseBean + ", showType=" + showType
+				+ "]";
 	}
 
 }

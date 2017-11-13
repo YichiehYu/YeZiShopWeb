@@ -23,7 +23,7 @@ public class MerchandiseBean implements Serializable {
 	private ClassBean clas;// 商品所属分类,最低一级分类
 
 	private Set<MerchandiseParameterBean> parameter;// 规格参数，多个参数\n分割，key：value
-	private Set<MerchandiseColorSizeBean> colorSize;//颜色大小
+	private Set<MerchandiseColorSizeBean> colorSize;// 颜色大小
 
 	public MerchandiseBean() {
 
@@ -99,6 +99,13 @@ public class MerchandiseBean implements Serializable {
 
 	public void setColorSize(Set<MerchandiseColorSizeBean> colorSize) {
 		this.colorSize = colorSize;
+	}
+
+	@Override
+	public String toString() {
+		return "MerchandiseBean [id=" + id + ", images=" + images + ", merchName=" + merchName + ", price=" + price
+				+ ", htmlBody=" + htmlBody + ", sales=" + sales + ", clas=" + clas + ", parameter=" + parameter
+				+ ", colorSize=" + colorSize + "]";
 	}
 
 }

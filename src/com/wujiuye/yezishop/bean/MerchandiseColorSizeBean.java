@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class MerchandiseColorSizeBean implements Serializable {
 
 	private int id;
-	private int merchId;// 商品id
+	private MerchandiseBean merch;// 商品id
 	private String color;// 颜色
 	private String size;// 大小
 	private int stock;// 库存，还剩多少件
@@ -18,12 +18,14 @@ public class MerchandiseColorSizeBean implements Serializable {
 		this.id = id;
 	}
 
-	public int getMerchId() {
-		return merchId;
+	
+
+	public MerchandiseBean getMerch() {
+		return merch;
 	}
 
-	public void setMerchId(int merchId) {
-		this.merchId = merchId;
+	public void setMerch(MerchandiseBean merch) {
+		this.merch = merch;
 	}
 
 	public String getColor() {
@@ -48,6 +50,12 @@ public class MerchandiseColorSizeBean implements Serializable {
 
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+
+	@Override
+	public String toString() {
+		return "MerchandiseColorSizeBean [id=" + id + ", merchId=" + (merch==null?0:merch.getId()) + ", color=" + color + ", size=" + size
+				+ ", stock=" + stock + "]";
 	}
 
 }

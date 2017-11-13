@@ -14,4 +14,7 @@ public final class HttpUrl {
 	public static final String JDClassSearchUrl = "https://so.m.jd.com/ware/search.action?keyword=";
 	// post请求
 	public static final String JDClassSearchPostUrl = "https://so.m.jd.com/ware/search.action";
+	
+	//电脑
+	public static final String JDClassSearchGetUrl = "https://search.jd.com/Search?&enc=utf-8";
 }

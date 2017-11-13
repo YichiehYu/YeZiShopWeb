@@ -2,17 +2,18 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping>
-    <class name="com.wujiuye.yezishop.bean.MerchandiseImagesBean" table="com_wujiuye_yezishop_merchandise_images">
+<hibernate-mapping package="com.wujiuye.yezishop.bean">
+    <class name="MerchandiseImagesBean" table="com_wujiuye_yezishop_merchandise_images">
     
         <id name="id" type="int">
             <column name="id" />
             <generator class="native" />
         </id>
         
-        <property name="merchId" type="int">
-            <column name="merch_id" />
-        </property>
+        <!-- 默认使用懒加载，该字段一般用不到 -->
+		<many-to-one name="merch" class="MerchandiseBean">
+			<column name="merch_id" />
+		</many-to-one>
         
         <property name="bigPath" type="java.lang.String">
             <column name="bigpath" />

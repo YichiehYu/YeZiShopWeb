@@ -47,4 +47,11 @@ public class RecommendClassDataBean implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	@Override
+	public String toString() {
+		return "RecommendClassDataBean [id=" + id + ", imageUrl=" + imageUrl + ", recommendClass=" + recommendClass
+				+ ", merchandiseList=" + merchandiseList + "]";
+	}
+
 }

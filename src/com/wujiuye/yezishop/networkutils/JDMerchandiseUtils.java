@@ -2,6 +2,7 @@ package com.wujiuye.yezishop.networkutils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -14,6 +15,7 @@ import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.google.gson.JsonArray;
@@ -27,6 +29,7 @@ import com.wujiuye.yezishop.bean.MerchandiseImagesBean;
 import com.wujiuye.yezishop.bean.MerchandiseParameterBean;
 import com.wujiuye.yezishop.http.HttpURLConnectionUtils;
 import com.wujiuye.yezishop.http.HttpUrl;
+import com.wujiuye.yezishop.utils.Base64Utils;
 
 /**
  * 京东商品捉取工具类
@@ -54,7 +57,7 @@ public class JDMerchandiseUtils {
 			String merchName = ware.get("wname").getAsString();
 			merchName = merchName.split(" ")[0];
 			mMerchandiseBean.setMerchName(merchName);
-			System.out.println(merchName);
+			System.err.println(merchName);
 			// 获取图片
 			JsonArray imagesJson = ware.get("images").getAsJsonArray();
 			Set<MerchandiseImagesBean> imgBeanList = new HashSet<>();
@@ -79,7 +82,7 @@ public class JDMerchandiseUtils {
 				csBean.setColor(colorSizeItem.get("color").getAsString());
 				csBean.setSize(colorSizeItem.get("size").getAsString());
 				colorSizeList.add(csBean);
-				System.out.println("color=" + csBean.getColor() + ",size=" + csBean.getSize());
+				System.err.println("color=" + csBean.getColor() + ",size=" + csBean.getSize());
 			}
 			mMerchandiseBean.setColorSize(colorSizeList);
 			// 获取规格参数
@@ -96,12 +99,13 @@ public class JDMerchandiseUtils {
 				parementerBean.setKey(keyValue[0].replace("\"", ""));
 				parementerBean.setValue(keyValue[1].replace("\"", ""));
 				parementer.add(parementerBean);
-				System.out.println("key=" + parementerBean.getKey() + ",value=" + parementerBean.getValue());
+				System.err.println("key=" + parementerBean.getKey() + ",value=" + parementerBean.getValue());
 			}
 			mMerchandiseBean.setParameter(parementer);
-			// 获取html详情
+			// 获取html详情，使用base64编码处理数据
+//			String wdis = Base64Utils.encode(ware.get("wdis").getAsString());
 			String wdis = ware.get("wdis").getAsString();
-			System.out.println(wdis);
+			System.err.println(wdis);
 			mMerchandiseBean.setHtmlBody(wdis);
 		}
 
@@ -113,30 +117,39 @@ public class JDMerchandiseUtils {
 	 * 
 	 * @param clas
 	 *            分类
-	 * @param maxPages
-	 *            最大捉取页数
 	 * @return
 	 */
 	@SuppressWarnings("serial")
-	public static List<String> queryJDMerchWareIdWithClassBean(ClassBean clas, int maxPages) {
+	public static List<Map<String, String>> queryJDMerchWareIdWithClassBean(ClassBean clas) {
 		String keywork = clas.getName();
-		List<String> wareIdList = new ArrayList<>();
+		List<Map<String, String>> wareIdList = new ArrayList<>();
+		String cookie = getPostCookies(HttpUrl.JDClassSearchGetUrl);
 		try {
-			for (int page = 0; page < maxPages; page++) {
-//				Document result = Jsoup.connect(HttpUrl.JDClassSearchPostUrl).data(new HashMap<String, String>() {
-//					{
-//						put("keyword", keywork);
-//						put("page", 1 + "");
-//					}
-//				}).post();
-				Document result = Jsoup.connect(HttpUrl.JDClassSearchUrl+keywork).get();
-				Elements searchlist43 = result.select("searchlist43");
-				System.out.println(result);
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+			Document result = Jsoup.connect(HttpUrl.JDClassSearchGetUrl)
+					.header("Accept", "text/html, application/xhtml+xml, */*")
+					.header("Content-Type", "application/x-www-form-urlencoded").header("Cookie", cookie)
+					.data(new HashMap<String, String>() {
+						{
+							put("keyword", keywork);
+							put("wq", keywork);
+						}
+					}).get();
+			Elements J_goodsList = result.select("#J_goodsList");
+			Elements gl_warp = J_goodsList.select(".gl-warp");
+			Elements gl_item = gl_warp.select(".gl-item");
+
+			Iterator<Element> iterator = gl_item.iterator();
+			while (iterator.hasNext()) {
+				Element item = iterator.next();
+				Map<String, String> itemMap = new HashMap<String, String>();
+				String price = item.select(".p-price").text();
+				System.err.println(price);
+				
+				itemMap.put("price", price);
+				String wareId = item.attr("data-sku");
+				itemMap.put("wareId", wareId);
+				
+				wareIdList.add(itemMap);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -144,40 +157,36 @@ public class JDMerchandiseUtils {
 		return wareIdList;
 	}
 
-	
 	/**
 	 * 请求获取url返回的cookie
 	 */
-	private static  Map<String,String> getPostCookies(String url) {
-		//获取请求连接
-        Connection con = Jsoup.connect(url);
-        //请求头设置，特别是cookie设置
-        con.header("Accept", "text/html, application/xhtml+xml, */*"); 
-        con.header("Content-Type", "application/x-www-form-urlencoded");
-        con.header("User-Agent", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0))"); 
-//        con.header("Cookie", cook);
-        //发送请求
-        Response resp = null;
+	private static String getPostCookies(String url) {
+		// 获取请求连接
+		Connection con = Jsoup.connect(url);
+		// 请求头设置，特别是cookie设置
+		con.header("Accept", "text/html, application/xhtml+xml, */*");
+		con.header("Content-Type", "application/x-www-form-urlencoded");
+		con.header("User-Agent", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0))");
+		// 发送请求
+		Response resp = null;
 		try {
 			resp = con.method(Method.GET).execute();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}        
-		if(resp == null)
+		}
+		if (resp == null)
 			return null;
-//        //获取cookie名称为__bsi的值
-//        String cookieValue = resp.cookie("__bsi");
-//        System.out.println("cookie  __bsi值：  "+cookieValue);
-        //获取返回cookie所值
-        Map<String,String> cookies = resp.cookies();
-        System.out.println("所有cookie值：  "+cookies);
-//        //获取返回头文件值
-//        String headerValue = resp.header(header);
-//        System.out.println("头文件"+header+"的值："+headerValue);
-//        //获取所有头文件值
-//        Map<String,String> headersOne =resp.headers();
-//        System.out.println("所有头文件值："+headersOne);
-        return cookies; 
+		Map<String, String> cookies = resp.cookies();
+		String cookiesStr = "";
+		int count = 0;
+		for (String cookieKey : cookies.keySet()) {
+			if (count > 0)
+				cookiesStr += ";";
+			count++;
+			cookiesStr += (cookieKey + "=");
+			cookiesStr += cookies.get(cookieKey);
+		}
+		System.err.println("所有cookie值：  " + cookiesStr);
+		return cookiesStr;
 	}
 }

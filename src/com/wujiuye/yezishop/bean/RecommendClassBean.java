@@ -38,4 +38,9 @@ public class RecommendClassBean implements Serializable {
 		this.image = image;
 	}
 
+	@Override
+	public String toString() {
+		return "RecommendClassBean [id=" + id + ", name=" + name + ", image=" + image + "]";
+	}
+
 }

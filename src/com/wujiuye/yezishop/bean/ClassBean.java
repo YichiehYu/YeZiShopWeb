@@ -50,4 +50,9 @@ public class ClassBean implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
+	@Override
+	public String toString() {
+		return "ClassBean [id=" + id + ", name=" + name + ", imgUrl=" + imgUrl==null?"":imgUrl + ", parentsClass=" + parentsClass==null?"":parentsClass + "]";
+	}
+
 }

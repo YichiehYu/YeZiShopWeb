@@ -19,7 +19,8 @@
 			<column name="price" />
 		</property>
 		
-		<property name="htmlBody" type="java.lang.String">
+		<!-- 当字符串很长时，需要修改映射类型为text,并手动到数据库中修改该字段的类型 -->
+		<property name="htmlBody" type="text">
 			<column name="htmlbody" />
 		</property>
 		
