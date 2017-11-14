@@ -10,7 +10,9 @@ public final class ResponseJsonResult {
 	public final static String RESPONSE_DATA_KEY = "data";
 
 	public enum StateMessageKeyEnum {
-		SUCCESS(0, "请求成功！"), ERROR(1, "数据获取失败！");
+		SUCCESS(0, "请求成功！"), 
+		ERROR(1, "数据获取失败！"),
+		PARAMETER_NOTNULL(2,"请求参数不完整！");
 
 		private int value;
 		private String message;
@@ -44,6 +46,12 @@ public final class ResponseJsonResult {
 				{
 					put(STATE_CODE_KEY, StateMessageKeyEnum.ERROR.getValue());
 					put(STATE_MESSAGE_KEY, StateMessageKeyEnum.ERROR.getMessage());
+				}
+			});
+			put(StateMessageKeyEnum.PARAMETER_NOTNULL, new HashMap<String, Object>() {
+				{
+					put(STATE_CODE_KEY, StateMessageKeyEnum.PARAMETER_NOTNULL.getValue());
+					put(STATE_MESSAGE_KEY, StateMessageKeyEnum.PARAMETER_NOTNULL.getMessage());
 				}
 			});
 		}

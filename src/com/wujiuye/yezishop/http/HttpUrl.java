@@ -14,7 +14,12 @@ public final class HttpUrl {
 	public static final String JDClassSearchUrl = "https://so.m.jd.com/ware/search.action?keyword=";
 	// post请求
 	public static final String JDClassSearchPostUrl = "https://so.m.jd.com/ware/search.action";
-	
-	//电脑
+	//电脑访问url
 	public static final String JDClassSearchGetUrl = "https://search.jd.com/Search?&enc=utf-8";
+	
+	
+	//必要头部轮播图及链接捉取url
+	public static final String BiYaoHeadImagesNewsUrl = "http://www.biyao.com/home/index.html";
+	//必要首页分组推荐捉取url
+	public static final String BiYaoHomeRecommendMerchUrl = "http://www.biyao.com/home/index.html";
 }

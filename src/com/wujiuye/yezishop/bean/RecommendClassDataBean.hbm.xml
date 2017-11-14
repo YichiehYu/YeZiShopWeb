@@ -17,12 +17,8 @@
 			<column name="rc_id" />
 		</many-to-one>
 
-		<property name="imageUrl" type="java.lang.String">
-			<column name="image" />
-		</property>
-
 		<!-- 单向多对一 -->
-		<many-to-one name="merchandiseList" class="RecommendMerchandiseBean">
+		<many-to-one name="merchandise" class="RecommendMerchandiseBean">
 			<column name="rm_id" />
 		</many-to-one>
 

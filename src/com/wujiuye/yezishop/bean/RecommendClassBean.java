@@ -13,6 +13,7 @@ public class RecommendClassBean implements Serializable {
 	private int id;
 	private String name;
 	private String image;
+	private String url;// 点击跳转的链接,可自定义链接app内跳转搜索
 
 	public int getId() {
 		return id;
@@ -38,9 +39,17 @@ public class RecommendClassBean implements Serializable {
 		this.image = image;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	@Override
 	public String toString() {
-		return "RecommendClassBean [id=" + id + ", name=" + name + ", image=" + image + "]";
+		return "RecommendClassBean [id=" + id + ", name=" + name + ", image=" + image + ", url=" + url + "]";
 	}
 
 }

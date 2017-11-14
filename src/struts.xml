@@ -20,6 +20,38 @@
 			</result>
 		</action>
 
+		<!-- 获取首页头部轮播图 -->
+		<action name="homeHeadNews" class="com.wujiuye.yezishop.api.HomeHeadNewsAction"
+			method="getHomeHeadNews">
+			<result type="json" name="JSON">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<!-- 获取首页分组推荐 -->
+		<action name="homeRecommendClassData"
+			class="com.wujiuye.yezishop.api.HomeRecommendClassDataAction" method="getHomeRecommendClassData">
+			<result type="json" name="JSON">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<!-- 搜索，分类搜索和关键词搜索 -->
+		<action name="search" class="com.wujiuye.yezishop.api.MerchSearchAction"
+			method="search">
+			<result type="json" name="JSON">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<!-- 获取商品详情 -->
+		<action name="merchInfo" class="com.wujiuye.yezishop.api.MerchandiseAction"
+			method="merchInfo">
+			<result type="json" name="JSON">
+				<param name="root">result</param>
+			</result>
+		</action>
+
 	</package>
 
 	<!-- web网页 -->

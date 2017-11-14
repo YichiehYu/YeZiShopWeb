@@ -29,21 +29,21 @@
 		</property>
 		
 		<many-to-one name="clas" class="ClassBean"
-			fetch="join">
+			fetch="join" lazy="false">
 			<column name="mc_id" />
 		</many-to-one>
 
-         <set name="parameter" cascade="save-update,delete">
+         <set name="parameter" cascade="save-update,delete" lazy="false">
              <key column="merch_id"></key>
              <one-to-many class="MerchandiseParameterBean"/>
          </set>
 		
-		<set name="images" cascade="save-update,delete">
+		<set name="images" cascade="save-update,delete" lazy="false">
              <key column="merch_id"></key>
              <one-to-many class="MerchandiseImagesBean"/>
          </set>
          
-         <set name="colorSize" cascade="save-update,delete">
+         <set name="colorSize" cascade="save-update,delete" lazy="false">
          	<key column="merch_id"></key>
          	<one-to-many class="MerchandiseColorSizeBean"/>
          </set>

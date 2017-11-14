@@ -1,10 +1,9 @@
 package com.wujiuye.yezishop.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
- * 一级分类推荐
+ * 推荐分组数据
  * 
  * @author wjy
  * 
@@ -12,9 +11,8 @@ import java.util.List;
 public class RecommendClassDataBean implements Serializable {
 
 	private int id;
-	private String imageUrl;// 一级分类主图片
 	private RecommendClassBean recommendClass;// 推荐分类表
-	private List<RecommendMerchandiseBean> merchandiseList;// 推荐的商品列表
+	private RecommendMerchandiseBean merchandise;// 推荐的商品
 
 	public RecommendClassBean getRecommendClass() {
 		return recommendClass;
@@ -22,22 +20,6 @@ public class RecommendClassDataBean implements Serializable {
 
 	public void setRecommendClass(RecommendClassBean recommendClass) {
 		this.recommendClass = recommendClass;
-	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-
-	public List<RecommendMerchandiseBean> getMerchandiseList() {
-		return merchandiseList;
-	}
-
-	public void setMerchandiseList(List<RecommendMerchandiseBean> merchandiseList) {
-		this.merchandiseList = merchandiseList;
 	}
 
 	public int getId() {
@@ -48,10 +30,18 @@ public class RecommendClassDataBean implements Serializable {
 		this.id = id;
 	}
 
+	public RecommendMerchandiseBean getMerchandise() {
+		return merchandise;
+	}
+
+	public void setMerchandise(RecommendMerchandiseBean merchandise) {
+		this.merchandise = merchandise;
+	}
+
 	@Override
 	public String toString() {
-		return "RecommendClassDataBean [id=" + id + ", imageUrl=" + imageUrl + ", recommendClass=" + recommendClass
-				+ ", merchandiseList=" + merchandiseList + "]";
+		return "RecommendClassDataBean [id=" + id + ", recommendClass=" + recommendClass + ", merchandise="
+				+ merchandise + "]";
 	}
 
 }
