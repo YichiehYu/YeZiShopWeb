@@ -29,7 +29,7 @@
 <br>
 #数据库表<br>
 >数据库使用的是mysql社区版<br>
->可直接使用本项目跟目录下的com_wujiuye_yezishop.shop.database.sql脚本导入<br>
+>可直接使用本项目跟目录下的yezishop.shop.database.sqlscript目录下的脚本文件导入<br>
 <br>
 <br>
 #关于我<br>
