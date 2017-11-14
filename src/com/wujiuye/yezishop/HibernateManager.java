@@ -11,11 +11,11 @@ public class HibernateManager {
 
 	private SessionFactory sessionFactory = null;
 	private ServiceRegistry sessionRegistry = null;
+	public SessionFactory getSessionFactory() {
+		return this.sessionFactory;
+	}
 
 	private static HibernateManager mHibernateManager = null;
-
-	// 默认的session
-	private Session mDefaultSession = null;
 
 	private HibernateManager() {
 	}
@@ -62,27 +62,6 @@ public class HibernateManager {
 			sessionFactory.close();
 		}
 		return this;
-	}
-
-	/**
-	 * 获取默认的session
-	 * 
-	 * @return
-	 */
-	public Session getDefaultSession() {
-		if (mDefaultSession == null) {
-			mDefaultSession = this.openSession();
-		}
-		return mDefaultSession;
-	}
-
-	/**
-	 * 关闭默认的session
-	 */
-	public void closeDefaultSession() {
-		if (mDefaultSession != null) {
-			mDefaultSession.close();
-		}
 	}
 
 }

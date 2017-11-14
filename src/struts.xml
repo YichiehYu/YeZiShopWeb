@@ -14,7 +14,7 @@
 		<!-- 获取分类 -->
 		<action name="merchClass" class="com.wujiuye.yezishop.api.MerchClassAction"
 			method="getMerchClass">
-			<result type="json" name="actionjson">
+			<result type="json" name="JSON">
 				<!-- 返回的字段名 -->
 				<param name="root">result</param>
 			</result>

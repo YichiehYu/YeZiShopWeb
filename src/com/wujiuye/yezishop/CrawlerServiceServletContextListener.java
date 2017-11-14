@@ -18,7 +18,6 @@ public class CrawlerServiceServletContextListener implements ServletContextListe
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
 		HibernateManager.getHibernateManager().openSessionFactory();
-		HibernateManager.getHibernateManager().getDefaultSession();
 	}
 	
 	/**
@@ -27,7 +26,6 @@ public class CrawlerServiceServletContextListener implements ServletContextListe
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
 		HibernateManager.getHibernateManager().closeSessionFactory();
-		HibernateManager.getHibernateManager().closeDefaultSession();
 	}
 
 }

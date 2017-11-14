@@ -6,12 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.service.ServiceRegistry;
 
+import com.wujiuye.yezishop.HibernateManager;
 import com.wujiuye.yezishop.bean.ClassBean;
 import com.wujiuye.yezishop.bean.MerchandiseBean;
 import com.wujiuye.yezishop.bean.MerchandiseColorSizeBean;
@@ -26,9 +23,6 @@ import com.wujiuye.yezishop.bean.MerchandiseParameterBean;
  */
 public class JDMerchandiseReptile {
 
-	private static ServiceRegistry sessionRegistry = null;
-
-	
 	/**
 	 * 捉取商品详情数据的线程
 	 * 
@@ -39,7 +33,6 @@ public class JDMerchandiseReptile {
 
 		private List<Map<String, String>> wareIdList;
 		private ClassBean clas;
-		private SessionFactory sessionFactory = null;
 
 		public GetJDMerchInfoThread(List<Map<String, String>> wareIdList, ClassBean clas) {
 			this.wareIdList = wareIdList;
@@ -48,11 +41,10 @@ public class JDMerchandiseReptile {
 
 		@Override
 		public void run() {
-			this.sessionFactory = new MetadataSources(sessionRegistry).buildMetadata().buildSessionFactory();
 			if (wareIdList != null && wareIdList.size() > 0) {
 				for (Map<String, String> ware : wareIdList) {
 					try {
-						Session session = this.sessionFactory.openSession();
+						Session session =HibernateManager.getHibernateManager().getSessionFactory().getCurrentSession();
 						Transaction transaction = session.beginTransaction();
 						MerchandiseBean merch = JDMerchandiseUtils.getXiangQing(ware.get("wareId"));
 						if (merch != null) {
@@ -83,7 +75,6 @@ public class JDMerchandiseReptile {
 						} else {
 							System.out.println("捉取不到wareId为" + ware.get("wareId") + "的商品信息！");
 						}
-						session.close();
 						Thread.sleep(5000);
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -94,7 +85,6 @@ public class JDMerchandiseReptile {
 					}
 				}
 			}
-			this.sessionFactory.close();
 		}
 	}
 
@@ -116,8 +106,7 @@ public class JDMerchandiseReptile {
 	 * @return
 	 */
 	private static List<ClassBean> getAllClassBean() {
-		SessionFactory mSessionFactory = new MetadataSources(sessionRegistry).buildMetadata().buildSessionFactory();
-		Session session = mSessionFactory.getCurrentSession();
+		Session session = HibernateManager.getHibernateManager().getSessionFactory().getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		@SuppressWarnings("unchecked")
 		/**
@@ -126,8 +115,6 @@ public class JDMerchandiseReptile {
 		List<ClassBean> classList = session.createQuery("from ClassBean child left join fetch child.parentsClass")
 				.list();
 		transaction.commit();
-		session.close();
-		mSessionFactory.close();
 		List<ClassBean> chilClasslist = new ArrayList<>();
 		// 只要子分类
 		for (ClassBean cla : classList) {
@@ -145,8 +132,8 @@ public class JDMerchandiseReptile {
 	 * @param argv
 	 */
 	public static void main(String[] argv) {
+		HibernateManager.getHibernateManager().openSessionFactory();
 		try {
-			sessionRegistry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
 			List<ClassBean> clasArray = getAllClassBean();
 			for (ClassBean clas : clasArray) {
 				getJDMerchWithMerchClass(clas);

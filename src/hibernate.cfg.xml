@@ -28,6 +28,12 @@
 		<!-- 指定自动生成数据表的策略:在运行数据库的时候hibernate会为我们在数据库自动生成数据表的策略 -->
 		<!-- <property name="hbm2ddl.auto">validate</property> -->
 		<property name="hbm2ddl.auto">update</property>
+		
+		<!-- getCurrentSession创建的session会绑定到当前线程，而openSession不会。
+　　			getCurrentSession创建的线程会再事务回滚或事务提交后自动关闭，而openSession必须手动关闭
+　　			getCurrentsession需要在hibernate.cfg.xml文件中添加配置：　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　 -->
+		<!-- 配置session绑定到当前线程 -->
+		<property name="current_session_context_class">thread</property>
 
 		<!-- 注册关系映射表 -->
 		<mapping resource="com/wujiuye/yezishop/bean/ClassBean.hbm.xml" />

@@ -2,7 +2,6 @@ package com.wujiuye.yezishop.networkutils;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -29,7 +28,6 @@ import com.wujiuye.yezishop.bean.MerchandiseImagesBean;
 import com.wujiuye.yezishop.bean.MerchandiseParameterBean;
 import com.wujiuye.yezishop.http.HttpURLConnectionUtils;
 import com.wujiuye.yezishop.http.HttpUrl;
-import com.wujiuye.yezishop.utils.Base64Utils;
 
 /**
  * 京东商品捉取工具类

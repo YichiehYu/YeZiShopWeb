@@ -3,6 +3,7 @@ package com.wujiuye.yezishop.utils;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+
 /**
  * base64编码解码工具
  * @author wjy
@@ -20,7 +21,7 @@ public final class Base64Utils {
 		byte[] bstr;
 		try {
 			bstr = msg.getBytes("utf-8");
-			return new sun.misc.BASE64Encoder().encode(bstr);
+			return java.util.Base64.getEncoder().encodeToString(bstr);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -36,8 +37,7 @@ public final class Base64Utils {
 	public static String decode(String str) {
 		byte[] bt = null;
 		try {
-			sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();
-			bt = decoder.decodeBuffer(str);
+			bt = java.util.Base64.getDecoder().decode(str);
 			String msg = new String(bt,"utf-8");
 			return msg;
 		} catch (IOException e) {
