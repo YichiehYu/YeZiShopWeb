@@ -31,7 +31,7 @@ public class MerchClassAction extends BaseAction {
 	@SuppressWarnings("unchecked")
 	public String getMerchClass() {
 		if (this.classlist==null || classlist.size() == 0) {
-			Session session = HibernateManager.getHibernateManager().getSessionFactory().getCurrentSession();
+			Session session = HibernateManager.getHibernateManager().getSessionFactory().openSession();
 			Transaction transaction = session.beginTransaction();
 			/**
 			 * 迫切和非迫切： 非迫切返回结果是Object[] 迫切连接返回的结果是对象 + fetch
@@ -39,6 +39,7 @@ public class MerchClassAction extends BaseAction {
 			List<ClassBean> tmpClassList = session
 					.createQuery("from ClassBean child left join fetch child.parentsClass").list();
 			transaction.commit();
+			session.close();
 			for (ClassBean bean : tmpClassList) {
 				// 修改图片地址为详细地址
 				if (!StringUtils.isEmpty(bean.getImgUrl())) {

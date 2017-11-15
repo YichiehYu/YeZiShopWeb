@@ -1,7 +1,6 @@
 package com.wujiuye.yezishop;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -11,6 +10,7 @@ public class HibernateManager {
 
 	private SessionFactory sessionFactory = null;
 	private ServiceRegistry sessionRegistry = null;
+
 	public SessionFactory getSessionFactory() {
 		return this.sessionFactory;
 	}
@@ -40,21 +40,6 @@ public class HibernateManager {
 				throw e;
 			}
 		}
-	}
-
-	public Session openSession() {
-		try {
-			return this.sessionFactory.openSession();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	public HibernateManager closeSession(Session session) {
-		if (session != null)
-			session.close();
-		return this;
 	}
 
 	public HibernateManager closeSessionFactory() {

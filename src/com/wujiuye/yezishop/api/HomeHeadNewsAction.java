@@ -28,7 +28,7 @@ public class HomeHeadNewsAction extends BaseAction{
 	@SuppressWarnings("unchecked")
 	public String getHomeHeadNews() {
 		if (this.homeHeadNewsList==null || homeHeadNewsList.size() == 0) {
-			Session session = HibernateManager.getHibernateManager().getSessionFactory().getCurrentSession();
+			Session session = HibernateManager.getHibernateManager().getSessionFactory().openSession();
 			Transaction transaction = session.beginTransaction();
 			/**
 			 * 迫切和非迫切： 非迫切返回结果是Object[] 迫切连接返回的结果是对象 + fetch
@@ -39,6 +39,7 @@ public class HomeHeadNewsAction extends BaseAction{
 					.setMaxResults(3)
 					.list();
 			transaction.commit();
+			session.close();
 			this.homeHeadNewsList = resultList;
 		}
 		this.result = ResponseJsonResult.getResponseStateJsonResult(this.getCurrentRequestUrl("getHomeHeadNews"),

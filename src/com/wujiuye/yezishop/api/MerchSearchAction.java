@@ -57,7 +57,7 @@ public class MerchSearchAction extends BaseAction {
 	 */
 	public String search() {
 		List<MerchandiseBean> result = new ArrayList<>();
-		Session session = HibernateManager.getHibernateManager().getSessionFactory().getCurrentSession();
+		Session session = HibernateManager.getHibernateManager().getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 		if ("keyword".equals(this.type) && !StringUtils.isEmpty(keywordOrClass)) {
 			result = searchWithKeyword(keywordOrClass, session);
@@ -80,6 +80,7 @@ public class MerchSearchAction extends BaseAction {
 		data.clear();
 		data.put("merchlist", result == null ? new ArrayList<>() : result);
 		transaction.commit();
+		session.close();
 		return JSON;
 	}
 

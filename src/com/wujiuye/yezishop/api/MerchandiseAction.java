@@ -40,7 +40,7 @@ public class MerchandiseAction extends BaseAction {
 		this.result = ResponseJsonResult.getResponseStateJsonResult("merchInfo", StateMessageKeyEnum.SUCCESS);
 		Map<String,Object> data = ResponseJsonResult.getDataMap(result);
 		data.clear();
-		Session session = HibernateManager.getHibernateManager().getSessionFactory().getCurrentSession();
+		Session session = HibernateManager.getHibernateManager().getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 		MerchandiseBean merch = session.get(MerchandiseBean.class, this.merchId);
 		if(merch!=null) {
@@ -51,6 +51,7 @@ public class MerchandiseAction extends BaseAction {
 			merch.getClas().toString();
 		}
 		transaction.commit();
+		session.close();
 		return JSON;
 	}
 

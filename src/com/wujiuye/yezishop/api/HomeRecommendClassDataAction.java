@@ -24,7 +24,7 @@ public class HomeRecommendClassDataAction extends BaseAction{
 	@SuppressWarnings("unchecked")
 	public String getHomeRecommendClassData() {
 		if (this.homeRecommendClassData==null || homeRecommendClassData.size() == 0) {
-			Session session = HibernateManager.getHibernateManager().getSessionFactory().getCurrentSession();
+			Session session = HibernateManager.getHibernateManager().getSessionFactory().openSession();
 			Transaction transaction = session.beginTransaction();
 			
 			//分组查询，获取所有推荐数据的分组
@@ -49,6 +49,7 @@ public class HomeRecommendClassDataAction extends BaseAction{
 				}
 			}
 			transaction.commit();
+			session.close();
 		}
 		this.result = ResponseJsonResult.getResponseStateJsonResult(this.getCurrentRequestUrl("getHomeRecommendClassData"),
 				StateMessageKeyEnum.SUCCESS);

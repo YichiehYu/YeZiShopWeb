@@ -9,14 +9,7 @@
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql:///com_wujiuye_yezishop?useUnicode=true&amp;characterEncoding=UTF-8</property>
 		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password"></property>
-
-		<!-- hibernate - jdbc连接基本配置 服务器的数据库配置  记得加上对应的数据库密码-->
-		<!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property> 
-			<property name="hibernate.connection.url">jdbc:mysql:///com_wujiuye_yezishop?useUnicode=true&amp;characterEncoding=UTF-8</property> 
-			<property name="hibernate.connection.username">root</property> <property 
-			name="hibernate.connection.password"></property> -->
-
+		<property name="hibernate.connection.password">wujiuye9565</property>
 
 		<!-- hibernate基本配置 -->
 		<!-- 方言 -->
