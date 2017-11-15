@@ -14,18 +14,18 @@
 
 #已实现接口<br>
 >1.椰子商城app首页头部轮播图，数据捉取自必要app首页轮播图<br>
->>*例：http://yezishop.shop/api/homeHeadNews<br>
+>>*例：http://wujiuye.yezishop.shop/api/homeHeadNews<br>
 >2.椰子商城app首页分类推荐，数据捉取自必要首页分组推荐<br>
->>*例：http://yezishop.shop/api/homeRecommendClassData<br>
+>>*例：http://wujiuye.yezishop.shop/api/homeRecommendClassData<br>
 >3.获取所有分类及其父分类，分类数据来源于必要app<br>
->>*例：http://yezishop.shop/api/merchClass<br>
+>>*例：http://wujiuye.yezishop.shop/api/merchClass<br>
 >4.搜索功能：<br>
 >>1).关键词搜索<br>
->>>*例：http://yezishop.shop/api/search?type=keyword&keywordOrClass=毛衣&page=1<br>
+>>>*例：http://wujiuye.yezishop.shop/api/search?type=keyword&keywordOrClass=毛衣&page=1<br>
 >>2).分类搜索<br>
->>>*例：http://yezishop.shop/api/search?type=class&keywordOrClass=男士风衣/大衣<br>
+>>>*例：http://wujiuye.yezishop.shop/api/search?type=class&keywordOrClass=男士风衣/大衣<br>
 >5.商品详情，数据捉取自京东手机版页面<br>
->>*例：http://yezishop.shop/api/merchInfo?merchId=10<br>
+>>*例：http://wujiuye.yezishop.shop/api/merchInfo?merchId=10<br>
 <br>
 #数据库表<br>
 >数据库使用的是mysql社区版<br>
