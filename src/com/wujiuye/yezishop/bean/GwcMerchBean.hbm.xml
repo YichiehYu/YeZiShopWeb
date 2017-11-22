@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="com.wujiuye.yezishop.bean">
+
+    <class name="GwcMerchBean" table="com_wujiuye_yezishop_gouwuche">
+    
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        
+        <property name="derviceOS" type="java.lang.String">
+            <column name="dervice_os" />
+        </property>
+        
+        <property name="derviceToken" type="java.lang.String">
+            <column name="dervice_token" />
+        </property>
+        
+        <many-to-one name="merchandise" class="MerchandiseBean">
+            <column name="merch_id" />
+        </many-to-one>
+        
+        <property name="dateTime" type="long">
+            <column name="datetime" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

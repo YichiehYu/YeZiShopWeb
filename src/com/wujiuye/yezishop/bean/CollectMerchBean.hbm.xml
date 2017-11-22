@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="com.wujiuye.yezishop.bean">
+
+
+    <class name="CollectMerchBean" table="com_wujiuye_yezishop_collentmerch">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        
+        <many-to-one name="user" class="ApiUserBean">
+            <column name="api_user_id" />
+        </many-to-one>
+        
+        <many-to-one name="merch" class="MerchandiseBean">
+            <column name="merch_id" />
+        </many-to-one>
+        
+        <property name="dataTime" type="long">
+            <column name="datetime" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

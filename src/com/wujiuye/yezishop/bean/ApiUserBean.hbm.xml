@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="com.wujiuye.yezishop.bean">
+
+    <class name="ApiUserBean" table="com_wujiuye_yezishop_apiusers">
+   
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        
+        <property name="openid" type="java.lang.String">
+            <column name="openid" />
+        </property>
+        
+        <property name="nickname" type="java.lang.String">
+            <column name="nickname" />
+        </property>
+        
+        <property name="face" type="java.lang.String">
+            <column name="face" />
+        </property>
+        
+        <property name="sex" type="int">
+            <column name="sex" />
+        </property>
+        
+        <property name="access_token" type="java.lang.String">
+            <column name="access_token" />
+        </property>
+        
+        <property name="api_platform" type="java.lang.String">
+            <column name="api_platform" />
+        </property>
+        
+        <property name="lastLoginTime" type="long">
+            <column name="last_longtime" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

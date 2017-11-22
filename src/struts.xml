@@ -52,6 +52,54 @@
 			</result>
 		</action>
 
+		<!-- 购物车列表 -->
+		<action name="gwcMerch" class="com.wujiuye.yezishop.api.GouWuCheMerchAction"
+			method="myGouWuChe">
+			<result type="json" name="JSON">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<!-- 加入购物车 -->
+		<action name="joinGwcWithMerchId" class="com.wujiuye.yezishop.api.GouWuCheMerchAction"
+			method="joinGouWuChe">
+			<result type="json" name="JSON">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<!-- 第三方登录 -->
+		<action name="apiLogin" class="com.wujiuye.yezishop.api.UserLoginAction"
+			method="apiLogin">
+			<result type="json" name="JSON">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<!-- 加入收藏 -->
+		<action name="joinCollect" class="com.wujiuye.yezishop.api.CollectMerchAction"
+			method="joinMyCollect">
+			<result type="json" name="JSON">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<!-- 我的收藏 -->
+		<action name="myCollects" class="com.wujiuye.yezishop.api.CollectMerchAction"
+			method="myCollectList">
+			<result type="json" name="JSON">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<!-- 取消收藏 -->
+		<action name="delCollect" class="com.wujiuye.yezishop.api.CollectMerchAction"
+			method="delCollectWithMerchId">
+			<result type="json" name="JSON">
+				<param name="root">result</param>
+			</result>
+		</action>
+
 	</package>
 
 	<!-- web网页 -->
