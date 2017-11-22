@@ -28,58 +28,58 @@
 >>*例：http://wujiuye.yezishop.shop/api/merchInfo?merchId=10<br>
 <br>
 
->>>package com.wujiuye.yezishop;
->>>public final class HttpUrl {
->>>	
->>>	//http请求or https请求
->>>	private static final String HTTP_VERSION = "http://";
->>>	//api接口域名
->>>	private static final String API_DOMAIN = "wujiuye.yezishop.shop";
->>>	
->>>	//获取所有分类
->>>	public static final String GetMerchClassUrl = HTTP_VERSION + API_DOMAIN + "/api/merchClass";
->>>	//首页轮播图
->>>	public static final String HomeHeadImagesUrl = HTTP_VERSION + API_DOMAIN + "/api/homeHeadNews";
->>>	//首页推荐
->>>	public static final String HomeRecommendMerchUrl = HTTP_VERSION + API_DOMAIN + "/api/homeRecommendClassData";
->>>	//商品搜索
->>>	public static final String SearchMerchUrl = HTTP_VERSION + API_DOMAIN + "/api/search";
->>>	//获取商品详情信息
->>>	public static final String GetMerchDetailsUrl = HTTP_VERSION + API_DOMAIN + "/api/merchInfo";
->>>	
->>>	//用户第三方登录 
->>>	//参数1:openid
->>>	//参数2:nickname
->>>	//参数3:face
->>>	//参数4:sex
->>>	//参数5:access_token 
->>>	//参数6:api_platform 第三方平台：QQ,WEIXIN
->>>	public static final String APIUesrLoginUrl = HTTP_VERSION + API_DOMAIN + "/api/apiLogin";
->>>	
->>>	//加入收藏
->>>	//参数1:token 登录获取的token
->>>	//参数2:merchId 商品id
->>>	public static final String JoinMyCollectUrl = HTTP_VERSION + API_DOMAIN + "/api/joinCollect";
->>>	//删除收藏
->>>	//参数1:token 登录获取的token
->>>	//参数2:merchId 商品id
->>>	public static final String DelMyCollectWithMerchIdUrl = HTTP_VERSION + API_DOMAIN + "/api/delCollect";
->>>	//我的收藏列表
->>>	//参数1:token 登录获取的token
->>>	public static final String MyCollectsUrl = HTTP_VERSION + API_DOMAIN + "/api/myCollects";
->>>	
->>>	//加入购物车
->>>	//参数1:merchId 商品id
->>>	//参数1:derviceToken 设备唯一标识
->>>	//参数2:derviceOS 设备操作系统
->>>	public static final String JoinGwcUrl = HTTP_VERSION + API_DOMAIN + "/api/joinGwcWithMerchId";
->>>	//我的购物车列表
->>>	//参数1:derviceToken 设备唯一标识
->>>	//参数2:derviceOS 设备操作系统
->>>	public static final String MyGouWuCheListUrl = HTTP_VERSION + API_DOMAIN + "/api/gwcMerch";
->>>}
->>>
->>>
+>package com.wujiuye.yezishop;<br/>
+>public final class HttpUrl {<br/>
+>	<br/>
+>	//http请求or https请求<br/>
+>	private static final String HTTP_VERSION = "http://";<br/>
+>	//api接口域名<br/>
+>	private static final String API_DOMAIN = "wujiuye.yezishop.shop";<br/>
+>	<br/>
+>	//获取所有分类<br/>
+>	public static final String GetMerchClassUrl = HTTP_VERSION + API_DOMAIN + "/api/merchClass";<br/>
+>	//首页轮播图<br/>
+>	public static final String HomeHeadImagesUrl = HTTP_VERSION + API_DOMAIN + "/api/homeHeadNews";<br/>
+>	//首页推荐<br/>
+>	public static final String HomeRecommendMerchUrl = HTTP_VERSION + API_DOMAIN + "/api/homeRecommendClassData";<br/>
+>	//商品搜索<br/>
+>	public static final String SearchMerchUrl = HTTP_VERSION + API_DOMAIN + "/api/search";<br/>
+>	//获取商品详情信息<br/>
+>	public static final String GetMerchDetailsUrl = HTTP_VERSION + API_DOMAIN + "/api/merchInfo";<br/>
+>	
+>	//用户第三方登录 <br/>
+>	//参数1:openid<br/>
+>	//参数2:nickname<br/>
+>	//参数3:face<br/>
+>	//参数4:sex<br/>
+>	//参数5:access_token <br/>
+>	//参数6:api_platform 第三方平台：QQ,WEIXIN<br/>
+>	public static final String APIUesrLoginUrl = HTTP_VERSION + API_DOMAIN + "/api/apiLogin";<br/>
+>	
+>	//加入收藏<br/>
+>	//参数1:token 登录获取的token<br/>
+>	//参数2:merchId 商品id<br/>
+>	public static final String JoinMyCollectUrl = HTTP_VERSION + API_DOMAIN + "/api/joinCollect";<br/>
+>	//删除收藏<br/>
+>	//参数1:token 登录获取的token<br/>
+>	//参数2:merchId 商品id<br/>
+>	public static final String DelMyCollectWithMerchIdUrl = HTTP_VERSION + API_DOMAIN + "/api/delCollect";<br/>
+>	//我的收藏列表<br/>
+>	//参数1:token 登录获取的token<br/>
+>	public static final String MyCollectsUrl = HTTP_VERSION + API_DOMAIN + "/api/myCollects";<br/>
+>	<br/>
+>	//加入购物车<br/>
+>	//参数1:merchId 商品id<br/>
+>	//参数1:derviceToken 设备唯一标识<br/>
+>	//参数2:derviceOS 设备操作系统<br/>
+>	public static final String JoinGwcUrl = HTTP_VERSION + API_DOMAIN + "/api/joinGwcWithMerchId";<br/>
+>	//我的购物车列表<br/>
+>	//参数1:derviceToken 设备唯一标识<br/>
+>	//参数2:derviceOS 设备操作系统<br/>
+>	public static final String MyGouWuCheListUrl = HTTP_VERSION + API_DOMAIN + "/api/gwcMerch";<br/>
+>}<br/>
+><br/>
+><br/>
 #数据库表<br>
 >数据库使用的是mysql社区版<br>
 >可直接使用本项目跟目录下的yezishop.shop.database.sqlscript目录下的脚本文件导入<br>
